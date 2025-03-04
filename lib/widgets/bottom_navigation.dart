@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../controllers/navigation_controller.dart';
 import './custom_icons.dart';
+import '../screens/product_add_screen.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
   final NavigationController controller;
@@ -107,7 +108,9 @@ class CustomBottomNavigation extends StatelessWidget {
   Widget _buildAddButton() {
     return Center(
       child: GestureDetector(
-        onTap: () => controller.changePage(2),
+        onTap: () {
+          Get.to(() => const ProductAddScreen());
+        },
         child: SizedBox(
           width: 56,
           child: Column(

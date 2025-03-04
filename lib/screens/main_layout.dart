@@ -4,6 +4,8 @@ import '../constants/colors.dart';
 import '../controllers/navigation_controller.dart';
 import '../screens/home_screen.dart';
 import '../screens/profile_screen.dart';
+import '../screens/product_add_screen.dart';
+import '../screens/favorite_screen.dart';
 import '../widgets/bottom_navigation.dart';
 
 class MainLayout extends StatelessWidget {
@@ -13,9 +15,9 @@ class MainLayout extends StatelessWidget {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const Center(child: Text('Categories')),
-    const Center(child: Text('Add Post')),
-    const Center(child: Text('My Ads')),
+    const FavoriteScreen(),
+    const ProductAddScreen(),
+    const Center(child: Text('Messages')),
     const ProfileScreen(),
   ];
 
