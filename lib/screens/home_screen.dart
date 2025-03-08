@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../widgets/home_category_card.dart';
 import '../widgets/product_card.dart';
-import '../widgets/search_bar.dart';
-import '../widgets/olx_logo.dart';
+import '../widgets/header.dart';
 import './product_view.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,50 +13,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Row(
-          children: [
-            const OlxLogo(height: 28),
-            const Spacer(),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: IconButton(
-                icon: const Icon(Icons.favorite_border, color: AppColors.primary),
-                onPressed: () {},
-              ),
-            ),
-            const SizedBox(width: 8),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: IconButton(
-                icon: const Icon(Icons.person_outline, color: AppColors.primary),
-                onPressed: () {},
-              ),
-            ),
-          ],
-        ),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(110),
+        child: Header(),
       ),
       body: CustomScrollView(
         slivers: [
@@ -67,8 +25,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CustomSearchBar(),
-                  const SizedBox(height: 24),
+                  // const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -219,7 +176,8 @@ class HomeScreen extends StatelessWidget {
 final List<Map<String, dynamic>> _products = [
   {
     'id': 1,
-    'image': 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=500',
+    'image':
+        'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=500',
     'title': 'iPhone 14 Pro Max - 256GB',
     'price': '\$1,199',
     'location': 'Tashkent, Chilonzor',
@@ -229,7 +187,8 @@ final List<Map<String, dynamic>> _products = [
   },
   {
     'id': 2,
-    'image': 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=500',
+    'image':
+        'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=500',
     'title': 'Samsung Galaxy S23 Ultra',
     'price': '\$1,099',
     'location': 'Tashkent, Yunusobod',
@@ -239,7 +198,8 @@ final List<Map<String, dynamic>> _products = [
   },
   {
     'id': 3,
-    'image': 'https://images.unsplash.com/photo-1585399000684-d2f72660f092?q=80&w=500',
+    'image':
+        'https://images.unsplash.com/photo-1585399000684-d2f72660f092?q=80&w=500',
     'title': 'MacBook Pro M1 - 512GB',
     'price': '\$1,499',
     'location': 'Tashkent, Mirabad',
@@ -249,7 +209,8 @@ final List<Map<String, dynamic>> _products = [
   },
   {
     'id': 4,
-    'image': 'https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=500',
+    'image':
+        'https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=500',
     'title': 'Apple Watch Series 8',
     'price': '\$399',
     'location': 'Tashkent, Mirzo Ulugbek',
@@ -259,7 +220,8 @@ final List<Map<String, dynamic>> _products = [
   },
   {
     'id': 5,
-    'image': 'https://images.unsplash.com/photo-1600003263720-95b45a4035d5?q=80&w=500',
+    'image':
+        'https://images.unsplash.com/photo-1600003263720-95b45a4035d5?q=80&w=500',
     'title': 'Sony PlayStation 5',
     'price': '\$499',
     'location': 'Tashkent, Shayxontohur',
@@ -269,7 +231,8 @@ final List<Map<String, dynamic>> _products = [
   },
   {
     'id': 6,
-    'image': 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=500',
+    'image':
+        'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=500',
     'title': 'Dell XPS 15 - 1TB',
     'price': '\$1,799',
     'location': 'Tashkent, Sergeli',

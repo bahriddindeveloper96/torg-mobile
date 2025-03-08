@@ -29,13 +29,15 @@ class _CategoryViewState extends State<CategoryView> {
     'yearTo': ''
   }.obs;
 
-  final NavigationController navigationController = Get.find<NavigationController>();
+  final NavigationController navigationController =
+      Get.find<NavigationController>();
 
   // Sample products data
   final List<Map<String, dynamic>> _products = [
     {
       'id': 1,
-      'image': 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=500',
+      'image':
+          'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=500',
       'title': 'iPhone 14 Pro Max - 256GB, Blue Color, Perfect Condition',
       'price': '\$1,199',
       'location': 'Tashkent, Chilonzor',
@@ -45,8 +47,10 @@ class _CategoryViewState extends State<CategoryView> {
     },
     {
       'id': 2,
-      'image': 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=500',
-      'title': 'Samsung Galaxy S23 Ultra - 512GB, Black, Full Box with Warranty',
+      'image':
+          'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=500',
+      'title':
+          'Samsung Galaxy S23 Ultra - 512GB, Black, Full Box with Warranty',
       'price': '\$1,099',
       'location': 'Tashkent, Yunusobod',
       'date': '2 hours ago',
@@ -55,7 +59,8 @@ class _CategoryViewState extends State<CategoryView> {
     },
     {
       'id': 3,
-      'image': 'https://images.unsplash.com/photo-1585399000684-d2f72660f092?q=80&w=500',
+      'image':
+          'https://images.unsplash.com/photo-1585399000684-d2f72660f092?q=80&w=500',
       'title': 'MacBook Pro M1 - 512GB SSD, 16GB RAM, Space Gray',
       'price': '\$1,499',
       'location': 'Tashkent, Mirabad',
@@ -65,7 +70,8 @@ class _CategoryViewState extends State<CategoryView> {
     },
     {
       'id': 5,
-      'image': 'https://images.unsplash.com/photo-1585399000684-d2f72660f092?q=80&w=500',
+      'image':
+          'https://images.unsplash.com/photo-1585399000684-d2f72660f092?q=80&w=500',
       'title': 'MacBook Pro M1 - 512GB SSD, 16GB RAM, Space Gray',
       'price': '\$1,499',
       'location': 'Tashkent, Mirabad',
@@ -75,7 +81,8 @@ class _CategoryViewState extends State<CategoryView> {
     },
     {
       'id': 4,
-      'image': 'https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=500',
+      'image':
+          'https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=500',
       'title': 'Apple Watch Series 8 - GPS + Cellular, 45mm',
       'price': '\$399',
       'location': 'Tashkent, Mirzo Ulugbek',
@@ -85,7 +92,8 @@ class _CategoryViewState extends State<CategoryView> {
     },
     {
       'id': 6,
-      'image': 'https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=500',
+      'image':
+          'https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=500',
       'title': 'Apple Watch Series 8 - GPS + Cellular, 45mm',
       'price': '\$399',
       'location': 'Tashkent, Mirzo Ulugbek',
@@ -121,8 +129,8 @@ class _CategoryViewState extends State<CategoryView> {
                         // Breadcrumbs
                         Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 8,
+                            horizontal: 35,
+                            vertical: 15,
                           ),
                           decoration: BoxDecoration(
                             color: Colors.grey[100],

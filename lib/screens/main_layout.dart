@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../constants/colors.dart';
+// import '../constants/colors.dart';
 import '../controllers/navigation_controller.dart';
 import '../screens/home_screen.dart';
 import '../screens/profile_screen.dart';
@@ -11,7 +11,8 @@ import '../widgets/bottom_navigation.dart';
 class MainLayout extends StatelessWidget {
   MainLayout({super.key});
 
-  final NavigationController navigationController = Get.put(NavigationController());
+  final NavigationController navigationController =
+      Get.put(NavigationController());
 
   final List<Widget> _screens = [
     const HomeScreen(),

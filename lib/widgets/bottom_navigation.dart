@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../constants/colors.dart';
+// import '../constants/colors.dart';
 import '../controllers/navigation_controller.dart';
 import './custom_icons.dart';
 import '../screens/product_add_screen.dart';
@@ -80,7 +80,8 @@ class CustomBottomNavigation extends StatelessWidget {
     required int index,
   }) {
     final isSelected = controller.selectedIndex.value == index;
-    final color = isSelected ? const Color(0xFF002F34) : const Color(0xFF406367);
+    final color =
+        isSelected ? const Color(0xFF002F34) : const Color(0xFF406367);
 
     return InkWell(
       onTap: () => controller.changePage(index),

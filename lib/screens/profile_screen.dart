@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import '../constants/colors.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -197,10 +197,14 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  _buildActionItem(Icons.list_alt_outlined, 'My Ads', '12 active ads'),
-                  _buildActionItem(Icons.favorite_border, 'Favorites', '48 items'),
-                  _buildActionItem(Icons.history, 'Recently Viewed', '156 items'),
-                  _buildActionItem(Icons.local_offer_outlined, 'Special Offers', '3 new offers'),
+                  _buildActionItem(
+                      Icons.list_alt_outlined, 'My Ads', '12 active ads'),
+                  _buildActionItem(
+                      Icons.favorite_border, 'Favorites', '48 items'),
+                  _buildActionItem(
+                      Icons.history, 'Recently Viewed', '156 items'),
+                  _buildActionItem(Icons.local_offer_outlined, 'Special Offers',
+                      '3 new offers'),
                 ],
               ),
             ),
@@ -237,7 +241,8 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStatCard(IconData icon, String value, String label, Color color) {
+  Widget _buildStatCard(
+      IconData icon, String value, String label, Color color) {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),

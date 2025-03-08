@@ -1,275 +1,251 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../widgets/product_card.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
 
+  // Format price with spaces for thousands
+  String formatPrice(String price) {
+    return price.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), ' ');
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: Colors.grey[100],
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: const Text(
-            'Favorites',
-            style: TextStyle(
-              color: Color(0xFF002F34),
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(48),
-            child: Container(
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Color(0xFFE5E9EB),
-                    width: 1,
-                  ),
-                ),
-              ),
-              child: TabBar(
-                labelColor: const Color(0xFF002F34),
-                unselectedLabelColor: const Color(0xFF406367),
-                indicatorColor: const Color(0xFF002F34),
-                indicatorWeight: 2,
-                labelStyle: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-                tabs: const [
-                  Tab(text: 'Ads'),
-                  Tab(text: 'Searches'),
-                ],
-              ),
-            ),
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            _buildFavoriteAds(),
-            _buildFavoriteSearches(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFavoriteAds() {
-    // Temporary sample data
-    final List<Map<String, dynamic>> favoriteAds = [
+    // Sample data
+    final List<Map<String, dynamic>> favorites = [
       {
-        'title': 'iPhone 13 Pro Max',
-        'price': '12,000,000',
-        'location': 'Tashkent',
-        'date': '2 days ago',
-        'image': 'https://picsum.photos/200/300',
+        'id': 1,
+        'title': 'iPhone 14 Pro Max 256GB',
+        'price': '12500000',
+        'oldPrice': '13000000',
+        'image': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-max-gold-select?wid=940&hei=1112&fmt=png-alpha'
       },
       {
-        'title': 'Samsung Galaxy S21',
-        'price': '8,000,000',
-        'location': 'Samarkand',
-        'date': '1 week ago',
-        'image': 'https://picsum.photos/200/301',
+        'id': 2,
+        'title': 'Samsung Galaxy S23 Ultra',
+        'price': '11800000',
+        'oldPrice': '12500000',
+        'image': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-max-gold-select?wid=940&hei=1112&fmt=png-alpha'
       },
       {
-        'title': 'MacBook Pro M1',
-        'price': '15,000,000',
-        'location': 'Bukhara',
-        'date': '3 days ago',
-        'image': 'https://picsum.photos/200/302',
+        'id': 3,
+        'title': 'MacBook Pro 14 M2 Pro',
+        'price': '18900000',
+        'image': 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-max-gold-select?wid=940&hei=1112&fmt=png-alpha'
       },
     ];
 
-    if (favoriteAds.isEmpty) {
-      return _buildEmptyState(
-        icon: Icons.favorite_border,
-        title: 'No favorite ads yet',
-        subtitle: 'Add items to favorites to see them here',
-      );
-    }
-
-    return GridView.builder(
-      padding: const EdgeInsets.all(16),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.75,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-      ),
-      itemCount: favoriteAds.length,
-      itemBuilder: (context, index) {
-        // final ad = favoriteAds[index];
-        // // return ProductCard(
-        // //   title: ad['title'],
-        // //   price: ad['price'],
-        // //   location: ad['location'],
-        // //   date: ad['date'],
-        // //   imageUrl: ad['image'],
-        // //   onTap: () {
-        // //     // TODO: Navigate to product detail
-        // //   },
-        // //   onFavorite: () {
-        // //     // TODO: Remove from favorites
-        // //   },
-        // );
-      },
-    );
-  }
-
-  Widget _buildFavoriteSearches() {
-    // Temporary sample data
-    final List<Map<String, dynamic>> savedSearches = [
-      {
-        'query': 'iPhone 13',
-        'filters': 'Tashkent, 8-12M UZS',
-        'date': '2 days ago',
-      },
-      {
-        'query': 'MacBook Pro',
-        'filters': 'All regions, 15-20M UZS',
-        'date': '1 week ago',
-      },
-    ];
-
-    if (savedSearches.isEmpty) {
-      return _buildEmptyState(
-        icon: Icons.search_off_outlined,
-        title: 'No saved searches',
-        subtitle: 'Save your searches to get notified about new items',
-      );
-    }
-
-    return ListView.separated(
-      padding: const EdgeInsets.all(16),
-      itemCount: savedSearches.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 12),
-      itemBuilder: (context, index) {
-        final search = savedSearches[index];
-        return _buildSearchCard(
-          query: search['query'],
-          filters: search['filters'],
-          date: search['date'],
-        );
-      },
-    );
-  }
-
-  Widget _buildSearchCard({
-    required String query,
-    required String filters,
-    required String date,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: const Color(0xFFE5E9EB),
-        ),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () {
-            // TODO: Execute saved search
-          },
-          borderRadius: BorderRadius.circular(8),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
+    return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5),
+      body: CustomScrollView(
+        slivers: [
+          // Header
+          SliverAppBar(
+            backgroundColor: Colors.white,
+            pinned: true,
+            elevation: 0,
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        query,
-                        style: const TextStyle(
-                          color: Color(0xFF002F34),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        filters,
-                        style: const TextStyle(
-                          color: Color(0xFF406367),
-                          fontSize: 14,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        date,
-                        style: const TextStyle(
-                          color: Color(0xFF406367),
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
+                const Text(
+                  'Избранное',
+                  style: TextStyle(
+                    color: Color(0xFF1A1A1A),
+                    fontSize: 28,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    // TODO: Remove saved search
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                    color: Color(0xFF406367),
-                    size: 20,
+                if (favorites.isNotEmpty)
+                  Text(
+                    '${favorites.length} товаров',
+                    style: const TextStyle(
+                      color: Color(0xFF62656A),
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
-                ),
               ],
             ),
+            expandedHeight: favorites.isEmpty ? 0 : 80,
           ),
-        ),
-      ),
-    );
-  }
 
-  Widget _buildEmptyState({
-    required IconData icon,
-    required String title,
-    required String subtitle,
-  }) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              size: 64,
-              color: const Color(0xFF406367),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              style: const TextStyle(
-                color: Color(0xFF002F34),
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              subtitle,
-              style: const TextStyle(
-                color: Color(0xFF406367),
-                fontSize: 14,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+          // Content
+          SliverPadding(
+            padding: const EdgeInsets.all(20),
+            sliver: favorites.isEmpty
+                ? SliverFillRemaining(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.favorite_outline,
+                          size: 64,
+                          color: Colors.grey[400],
+                        ),
+                        const SizedBox(height: 24),
+                        const Text(
+                          'В избранном пока пусто',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF1A1A1A),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'Сохраняйте товары, которые понравились,\nчтобы купить их позже',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        ElevatedButton(
+                          onPressed: () => Get.toNamed('/'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF7000FF),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 32,
+                              vertical: 16,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: const Text(
+                            'Перейти к покупкам',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : SliverGrid(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 24,
+                      crossAxisSpacing: 24,
+                      childAspectRatio: 0.7,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final item = favorites[index];
+                        return GestureDetector(
+                          onTap: () => Get.toNamed('/product/${item['id']}'),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Image with favorite button
+                                Stack(
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 1,
+                                      child: ClipRRect(
+                                        borderRadius: const BorderRadius.vertical(
+                                          top: Radius.circular(12),
+                                        ),
+                                        child: Image.network(
+                                          item['image'],
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 12,
+                                      right: 12,
+                                      child: Container(
+                                        width: 36,
+                                        height: 36,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(18),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(0.1),
+                                              blurRadius: 8,
+                                              offset: const Offset(0, 2),
+                                            ),
+                                          ],
+                                        ),
+                                        child: IconButton(
+                                          icon: const Icon(
+                                            Icons.favorite,
+                                            size: 20,
+                                            color: Color(0xFF7000FF),
+                                          ),
+                                          onPressed: () {
+                                            // Handle remove from favorites
+                                          },
+                                          padding: EdgeInsets.zero,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                // Product details
+                                Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        item['title'],
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Color(0xFF1A1A1A),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        '${formatPrice(item['price'])} сум',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xFF1A1A1A),
+                                        ),
+                                      ),
+                                      if (item['oldPrice'] != null) ...[
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          '${formatPrice(item['oldPrice'])} сум',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey[600],
+                                            decoration: TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                      ],
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      childCount: favorites.length,
+                    ),
+                  ),
+          ),
+        ],
       ),
     );
   }

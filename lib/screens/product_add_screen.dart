@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import '../constants/colors.dart';
+// import '../constants/colors.dart';
 
 class ProductAddScreen extends StatefulWidget {
   const ProductAddScreen({super.key});
@@ -151,18 +151,20 @@ class _ProductAddScreenState extends State<ProductAddScreen> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                ..._images.map((image) => Container(
-                  width: 100,
-                  height: 100,
-                  margin: const EdgeInsets.only(right: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    image: DecorationImage(
-                      image: NetworkImage(image),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                )).toList(),
+                ..._images
+                    .map((image) => Container(
+                          width: 100,
+                          height: 100,
+                          margin: const EdgeInsets.only(right: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                              image: NetworkImage(image),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ))
+                    .toList(),
               ],
             ),
           ),
@@ -316,7 +318,9 @@ class _ProductAddScreenState extends State<ProductAddScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    _selectedCategory.isEmpty ? 'Select category' : _selectedCategory,
+                    _selectedCategory.isEmpty
+                        ? 'Select category'
+                        : _selectedCategory,
                     style: TextStyle(
                       color: _selectedCategory.isEmpty
                           ? const Color(0xFF406367)
@@ -418,7 +422,7 @@ class _ProductAddScreenState extends State<ProductAddScreen> {
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    
+
     if (image != null) {
       setState(() {
         _images.add(image.path);
